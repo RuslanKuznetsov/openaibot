@@ -18,6 +18,9 @@ parser.add_argument("--oaitoken")
 parser.add_argument("--botname")
 args = parser.parse_args()
 
+token = '5974194155:AAFqp0Ap67mJjRmTWlHphiyeHsXwd8FOdOE'
+openai.api_key = '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'
+
 token = args.bottoken
 openai.api_key = args.oaitoken
 
@@ -73,7 +76,7 @@ async def send(message : types.Message):
     cursor.execute("INSERT INTO history (token, chat_id, message) VALUES (?, ?, ?)",
                    (token[13:], message.chat.id, message.text))
     conn.commit()
-    if message.text.startswith(args.botname):
+    if message.text.startswith('@DinaraGirl_Bot'):
         # Get the context from the database
         cursor.execute("SELECT context FROM context WHERE token=?", (token[13:],))
         context = cursor.fetchone()
