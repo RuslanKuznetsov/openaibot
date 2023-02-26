@@ -21,8 +21,8 @@ args = parser.parse_args()
 token = '5974194155:AAFqp0Ap67mJjRmTWlHphiyeHsXwd8FOdOE'
 openai.api_key = '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'
 
-token = args.bottoken
-openai.api_key = args.oaitoken
+#token = args.bottoken
+#openai.api_key = args.oaitoken
 
 
 bot = Bot(token)
