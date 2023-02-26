@@ -18,9 +18,6 @@ parser.add_argument("--oaitoken")
 parser.add_argument("--botname")
 args = parser.parse_args()
 
-#token = '5974194155:AAFqp0Ap67mJjRmTWlHphiyeHsXwd8FOdOE'
-#openai.api_key = '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'
-
 token = args.bottoken
 openai.api_key = args.oaitoken
 
