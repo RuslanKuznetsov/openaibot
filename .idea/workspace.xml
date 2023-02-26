@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4497565-79e8-49f8-b5d3-3478d9469bbe" name="Changes" comment="Добавил Динара-Бота в репо">
+    <list default="true" id="e4497565-79e8-49f8-b5d3-3478d9469bbe" name="Changes" comment="Версия бота с запуском из командной строки">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,12 +79,20 @@
       <option name="project" value="LOCAL" />
       <updated>1675345133889</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Версия бота с запуском из командной строки">
+      <created>1677442996467</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677442996467</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Добавил Динара-Бота в репо" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил Динара-Бота в репо" />
+    <MESSAGE value="Версия бота с запуском из командной строки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Версия бота с запуском из командной строки" />
   </component>
 </project>
