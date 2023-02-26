@@ -1,3 +1,4 @@
+#DinaraBot Universal 2.0
 import openai
 import sqlite3
 from aiogram import Bot, types
@@ -9,10 +10,20 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from nltk.metrics.distance import jaccard_distance
 import logging
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--bottoken")
+parser.add_argument("--oaitoken")
+parser.add_argument("--botname")
+args = parser.parse_args()
 
-token = '5974194155:AAFqp0Ap67mJjRmTWlHphiyeHsXwd8FOdOE'
-openai.api_key = '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'
+#token = '5974194155:AAFqp0Ap67mJjRmTWlHphiyeHsXwd8FOdOE'
+#openai.api_key = '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'
+
+token = args.bottoken
+openai.api_key = args.oaitoken
+
 
 bot = Bot(token)
 storage = MemoryStorage()
@@ -65,7 +76,7 @@ async def send(message : types.Message):
     cursor.execute("INSERT INTO history (token, chat_id, message) VALUES (?, ?, ?)",
                    (token[13:], message.chat.id, message.text))
     conn.commit()
-    if message.text.startswith("@DinaraGirl_Bot"):
+    if message.text.startswith(args.botname):
         # Get the context from the database
         cursor.execute("SELECT context FROM context WHERE token=?", (token[13:],))
         context = cursor.fetchone()
