@@ -22,6 +22,7 @@ token = args.bottoken
 openai.api_key = args.oaitoken
 
 
+
 bot = Bot(token)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
@@ -73,7 +74,7 @@ async def send(message : types.Message):
     cursor.execute("INSERT INTO history (token, chat_id, message) VALUES (?, ?, ?)",
                    (token[13:], message.chat.id, message.text))
     conn.commit()
-    if message.text.startswith('@DinaraGirl_Bot'):
+    if message.text.startswith(args.botname):
         # Get the context from the database
         cursor.execute("SELECT context FROM context WHERE token=?", (token[13:],))
         context = cursor.fetchone()
