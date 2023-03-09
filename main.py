@@ -21,8 +21,6 @@ args = parser.parse_args()
 token = args.bottoken
 openai.api_key = args.oaitoken
 
-
-
 bot = Bot(token)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
@@ -92,25 +90,28 @@ async def send(message : types.Message):
             print(str(diffContext) + ' ' + c[0])
         # print(context3)
         try:
-            response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=f"{context} {message.text}",
-            temperature=0.9,
-            max_tokens=3000,
-            top_p=1.0,
-            frequency_penalty=0.0,
-            presence_penalty=0.6,
-            stop=["You:"]
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": context},
+                    {"role": "user", "content": message.text},
+                ],
+                temperature=0.9,
+                max_tokens=3000,
+                top_p=1.0,
+                frequency_penalty=0.0,
+                presence_penalty=0.6,
+                stop=["You:"]
             )
-            print(message.text)
-            print(context)
+            #print(message.text)
+            #print(context)
         except Exception as e:
             logging.error("Ошибка в отправке запроса в OpenAI: %s", e)
             await message.answer('Ошибка запроса. Попробуйте еще раз.')
         try:
-            await message.answer(response['choices'][0]['text'])
+            await message.answer(response['choices'][0].message.content)
             # Save the response to the history table
-            cursor.execute("INSERT INTO history (token, chat_id, message) VALUES (?, ?, ?)", (token[13:], message.chat.id, response.choices[0].text))
+            cursor.execute("INSERT INTO history (token, chat_id, message) VALUES (?, ?, ?)", (token[13:], message.chat.id, response['choices'][0].message.content))
             conn.commit()
         except Exception as e:
             logging.error("Ошибка отправки сообщения-ответа бота в Telegram: %s", e)
